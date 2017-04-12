@@ -1479,10 +1479,6 @@ is-fullwidth-code-point@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/is-fullwidth-code-point/-/is-fullwidth-code-point-2.0.0.tgz#a3b30a5c4f199183167aaab93beefae3ddfb654f"
 
-is-generator@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/is-generator/-/is-generator-1.0.3.tgz#c14c21057ed36e328db80347966c693f886389f3"
-
 is-glob@^2.0.0, is-glob@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/is-glob/-/is-glob-2.0.1.tgz#d096f926a3ded5600f3fdfd91198cb0888c2d863"
@@ -1641,7 +1637,7 @@ lodash.pickby@^4.0.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.pickby/-/lodash.pickby-4.6.0.tgz#7dea21d8c18d7703a27c704c15d3b84a67e33aff"
 
-lodash@^4.0.0, lodash@^4.17.2, lodash@^4.2.0, lodash@^4.3.0:
+lodash@^4.0.0, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -1703,14 +1699,13 @@ ms@0.7.2:
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.2.tgz#ae25cf2512b3885a1d95d7f037868d8431124765"
 
-mudash@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/mudash/-/mudash-0.7.0.tgz#bf738ae7bfdefe27fbebc3b50daa2e5d8ac7c350"
+mudash@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/mudash/-/mudash-0.8.0.tgz#42d746d69580f1187acccfe7e927ac1d10014873"
   dependencies:
     es6-symbol "^3.1.0"
     immutable "^3.8.1"
-    is-generator "^1.0.3"
-    lodash "^4.17.2"
+    lodash "^4.17.4"
 
 mute-stream@0.0.5:
   version "0.0.5"
