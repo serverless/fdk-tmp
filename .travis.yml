@@ -1,0 +1,9 @@
+language: node_js
+cache: yarn
+node_js:
+- 'node'
+deploy:
+  provider: npm
+  email: serverless.com
+  on:
+    tags: true

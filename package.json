@@ -1,0 +1,42 @@
+{
+  "name": "fdk",
+  "version": "0.0.1",
+  "main": "./index.js",
+  "description": "Functional middleware for a serverless world",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/serverless/fdk.git"
+  },
+  "author": "serverless.com",
+  "bugs": {
+    "url": "https://github.com/serverless/fdk/issues"
+  },
+  "homepage": "https://github.com/serverless/fdk#readme",
+  "scripts": {
+    "build": "mkdir -p dist && babel src -d dist --source-maps",
+    "lint": "eslint .",
+    "prepublish": "npm run build",
+    "test": "ava",
+    "watch": "mkdir -p dist && babel -w src -d dist --source-maps"
+  },
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "mudash": "^0.8.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-eslint": "^6.1.2",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-1": "^6.16.0",
+    "babel-preset-stage-2": "^6.18.0",
+    "chai": "^3.5.0",
+    "eslint": "^3.9.1",
+    "eslint-cli": "^1.1.0"
+  },
+  "license": "MIT",
+  "keywords": [
+    "middleware",
+    "serverless"
+  ]
+}
