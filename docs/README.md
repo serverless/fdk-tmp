@@ -195,13 +195,9 @@ const app = fdk()
 ```
 
 
-#### Standard Function
-
-```js
-import fdk
-```
-
 ### Serverless Event Lifecycle
+
+TODO
 
 
 ### Serverless Service Reference
