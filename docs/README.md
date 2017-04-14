@@ -54,7 +54,7 @@ A handler is an entry point of your serverless application and should be exporte
 
 The universal handler
 
-#```yaml
+```yaml
 # serverless.yml
 
 service:
