@@ -12,7 +12,6 @@
   + [Service Reference](#serverless-service-reference)
   + [Function Reference](#serverless-function-reference)
   + [Event Format](#serverless-event-format)
-  + [Event Channels](#serverless-event-channels)
 
 
 ## Concepts
