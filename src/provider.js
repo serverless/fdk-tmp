@@ -6,7 +6,14 @@ export default function provider(nativeContext) {
   if (process.env.AWS_DEFAULT_REGION) {
     name = 'aws'
   }
+  let info = {}
+  if (name === 'aws') {
+    if (nativeContext) {
+      info = parseAWSARN(nativeContext.invokedFunctionArn)
+    }
+  }
   return {
+    info,
     name
   }
 }

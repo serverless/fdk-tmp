@@ -11,8 +11,8 @@ const FDK = deftype('FDK', {
   handler(fn, obj) {
     const app = set(obj, 'handle', fn)
     return ufs(async (context, event) => {
-      const wrapped = map(app.middleware, (fn) => (ctx) => {
-        const result = fn(ctx)
+      const wrapped = map(app.middleware, (middleware) => (ctx) => {
+        const result = middleware(ctx)
         return isFunction(result) ? ctx.use(result) : result
       })
       context = await flow(wrapped)(context)
@@ -21,17 +21,17 @@ const FDK = deftype('FDK', {
     })
   },
 
-  azure(fn, obj) {
-
-  },
-
-  lambda(fn, obj) {
-
-  },
-
-  openwhisk(fn, obj) {
-
-  },
+  // azure(fn, obj) {
+  //
+  // },
+  //
+  // lambda(fn, obj) {
+  //
+  // },
+  //
+  // openwhisk(fn, obj) {
+  //
+  // },
 
   use(fn, obj) {
     return update(obj, 'middleware', (middleware) => push(middleware, fn))

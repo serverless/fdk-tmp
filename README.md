@@ -42,9 +42,9 @@ The Serverless FDK is designed to ease the adoption of serverless technology. It
 const fdk = require('@serverless/fdk')
 
 const myHandler = fdk()
-  .handler(() => "Hello World")
+  .handler(() => 'Hello World')
 
-export myHandler
+module.exports.myHandler = myHandler
 ```
 
 ```yaml

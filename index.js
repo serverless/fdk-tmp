@@ -1,3 +1,4 @@
+/* eslint-disable no-var */
 if (!global._babelPolyfill) {
   require('babel-polyfill')
 }

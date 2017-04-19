@@ -1,4 +1,4 @@
-import { butLast, deftype, isFunction, isGenerator, last, set, types } from 'mudash'
+import { deftype, isFunction, isGenerator, types } from 'mudash'
 import Promise from 'bluebird'
 import Goable from '../protocols/Goable'
 

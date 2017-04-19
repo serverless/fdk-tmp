@@ -1,6 +1,6 @@
+import { isString } from './mudash'
 import context from './context'
 import event from './event'
-import provider from './provider'
 
 export default function ufs(fn, options = {}) {
   const ctx = context({
@@ -15,31 +15,37 @@ const providerMap = {
     ctx = context({ ...ctx, native: nativeContext })
     evt = event({ native: evt })
     try {
-      const result = await call(fn, ctx, evt)
-      callback(null, result)
+      let response = await call(fn, ctx, evt)
+      if (isString(response)) {
+        response = {
+          statusCode: 200,
+          body: response
+        }
+      }
+      callback(null, response)
     } catch(error) {
       callback(error)
     }
   },
-  'azure': (fn, ctx) => (nativeContext, ...args) => {
-    // ctx = context({ ...ctx, native })
-    // return transformArgs(ctx, args)
-    //   .then((args) => call(ctx, fn, ...args))
-    //   .then((result) => ctx.done(null, result))
-    //   .catch((error) => ctx.done(error))
-  },
-  'google': (fn, ctx) => (evt, callback) => {
-    // ctx = context({ ...ctx, native })
-    // return transformArgs(ctx, [evt])
-    //   .then((args) => call(ctx, fn, ...args))
-    //   .then((result) => callback(null, result))
-    //   .catch((error) => callback(error))
-  },
-  'openwhisk': (fn, ctx) => (params) => {
-    // ctx = context({ ...ctx, native })
-    // return transformArgs(ctx, [params])
-    //   .then((args) => call(ctx, fn, ...args))
-  },
+  // 'azure': (fn, ctx) => (nativeContext, ...args) => {
+  //   // ctx = context({ ...ctx, native })
+  //   // return transformArgs(ctx, args)
+  //   //   .then((args) => call(ctx, fn, ...args))
+  //   //   .then((result) => ctx.done(null, result))
+  //   //   .catch((error) => ctx.done(error))
+  // },
+  // 'google': (fn, ctx) => (evt, callback) => {
+  //   // ctx = context({ ...ctx, native })
+  //   // return transformArgs(ctx, [evt])
+  //   //   .then((args) => call(ctx, fn, ...args))
+  //   //   .then((result) => callback(null, result))
+  //   //   .catch((error) => callback(error))
+  // },
+  // 'openwhisk': (fn, ctx) => (params) => {
+  //   // ctx = context({ ...ctx, native })
+  //   // return transformArgs(ctx, [params])
+  //   //   .then((args) => call(ctx, fn, ...args))
+  // },
   'default': (fn, ctx) => async (...args) => {
     ctx = context({ ...ctx, native: {} })
     const evt = event({
