@@ -39,7 +39,7 @@ The Serverless FDK is designed to ease the adoption of serverless technology. It
 
 ```js
 // index.js
-import fdk from '@serverless/fdk'
+const fdk = require('@serverless/fdk')
 
 const myHandler = fdk()
   .handler(() => "Hello World")

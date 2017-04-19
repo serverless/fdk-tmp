@@ -1,0 +1,7 @@
+{
+  "name": "serverless-aws-node-hello-world",
+  "private": true,
+  "dependencies": {
+    "@serverless/fdk": "0.0.1"
+  }
+}
