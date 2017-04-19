@@ -6,21 +6,21 @@
 
 ## Getting started
 
-### Checking out from github
+#### Check out from github
 ```bash
 git clone https://github.com/serverless/fdk.git
 ```
 
-### Install dev dependencies
+#### Install dev dependencies
 ``` bash
 cd ./fdk
 yarn install
 ```
 
 
-## Trying out changes
+## Try out changes
 
-### In a test project
+#### In a test project
 You'll want to test changes to the `fdk` occasionally in a test project. To do so, follow these steps...
 
 1) Have the `fdk` code checked out from github and dev dependencies installed.
