@@ -2,10 +2,12 @@ const fdk = require('@serverless/fdk')
 
 const hello = fdk()
   .use((context) => (next) => (event) => {
-    console.log('hello context!:', context)
+    console.log('hello middleware!')
+    console.log('context:', context)
     return event
   })
   .handler((event) => {
+    console.log('hello handler!')
     console.log('event:', event)
     return  {
       statusCode: 200,

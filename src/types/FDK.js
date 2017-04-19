@@ -17,18 +17,31 @@ const FDK = deftype('FDK', {
       })
       context = await flow(wrapped)(context)
       event = await use(...context.middleware)(event)
-      return await app.handle(event)
+      return await app.handle(event, context)
     })
   },
 
   // azure(fn, obj) {
   //
   // },
-  //
-  // lambda(fn, obj) {
-  //
-  // },
-  //
+
+  lambda(fn, obj) {
+    return obj.handler(async (event, context) => {
+      return new Promise((resolve, reject) => {
+        try {
+          fn(event.native, context.native, (error, response) => {
+            if (!error) {
+              return resolve(response)
+            }
+            return reject(error)
+          })
+        } catch(error) {
+          reject(error)
+        }
+      })
+    })
+  },
+
   // openwhisk(fn, obj) {
   //
   // },

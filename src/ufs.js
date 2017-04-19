@@ -1,4 +1,4 @@
-import { isString } from './mudash'
+import { isString } from 'mudash'
 import context from './context'
 import event from './event'
 
@@ -69,10 +69,3 @@ function call(fn, ctx, evt) {
     }
   })
 }
-
-// function transformArgs(ctx, args) {
-//   // const { transforms } = ctx
-//   // const eventType = ''// TODO BRN: Figure out how to determine the eventType
-//   // const transform = transforms[eventType]
-//   // return Promise.all([transform ? transform(...args) : ...args])
-// }

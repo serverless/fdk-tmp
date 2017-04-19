@@ -1,0 +1,7 @@
+{
+  "name": "serverless-aws-node-existing-lambda",
+  "private": true,
+  "dependencies": {
+    "@serverless/fdk": "0.0.1"
+  }
+}
