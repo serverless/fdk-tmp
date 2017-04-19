@@ -1,22 +1,24 @@
 # Implementation
 
+* [Application](#application)
+* [Handlers](#handlers)
+  + [Universal Handler](#universal-handler)
+  + [Lambda Handler](#lambda-handler)
+  + [Azure Handler](#azure-handler)
+  + [OpenWhisk Handler](#openwhisk-handler)
+  + [Google Handler](#google-handler)
+* [Middleware](#middleware)
+* [Context](#context)
+* [Event](#event)
+* [Service Reference](#serverless-service-reference)
+* [Function Reference](#serverless-function-reference)
+* [Event Format](#serverless-event-format)
 * [Concepts](#concepts)
-  + [Application](#application)
-  + [Handlers](#handlers)
-    + [Universal Handler](#universal-handler)
-    + [Lambda Handler](#lambda-handler)
-    + [Azure Handler](#azure-handler)
-    + [OpenWhisk Handler](#openwhisk-handler)
-    + [Google Handler](#google-handler)
-  + [Middleware](#middleware)
-  + [Service Reference](#serverless-service-reference)
-  + [Function Reference](#serverless-function-reference)
-  + [Event Format](#serverless-event-format)
+  + [Immutability](#immutability)
+  + [Async](#async)
 
 
-## Concepts
-
-### Application
+## Application
 
 The serverless fdk provides a simple and extensible framework for building serverless applications.
 
@@ -152,20 +154,6 @@ const myHandler = fdk()
 export myHandler  
 ```
 
-### Immutable by Default
-
-```js
-import fdk from '@serverless/fdk'
-
-const app = fdk()
-  .use(context => next => {
-    // some shared middleware
-  })
-
-export const handler1 = app.handler(() => console.log('Handler 1'))
-export const handler2 = app.handler(() => console.log('Handler 2'))
-```
-
 ### Types of functions
 
 #### Standard Function
@@ -197,6 +185,33 @@ const app = fdk()
     const pingEvent = yield take('ping')
     return yield next(event)
   })
+```
+
+### Context
+
+The Context contains data about the runtime, provider, and other useful information.
+
+```js
+import fdk from '@serverless/fdk'
+
+const app = fdk()
+  .use(context => {
+    console.log(context)
+    return context
+  })
+```
+
+#### Context - Properties
+
+Name | Type | Description
+--- | --- | ---
+`native` | <code>{Object}</code> | The native provider context.
+`provider` | <code>{Object}</code> | The details about the provider.
+
+
+
+### Event
+```js
 ```
 
 
@@ -290,3 +305,25 @@ orderGadget({ type: "flibgibit" }, { name: 'brian' }) // Returns a Promise that 
   generatedBy: string   //(maybe some kind of key for the event generator?)
 }
 ```
+
+## Concepts
+
+### Immutability
+
+All data models are immutable by default built on top of [immutable](https://facebook.github.io/immutable-js/)
+
+```js
+import fdk from '@serverless/fdk'
+
+const app = fdk()
+  .use(context => next => event => {
+    // some shared middleware
+  })
+
+export const handler1 = app.handler(() => console.log('Handler 1'))
+export const handler2 = app.handler(() => console.log('Handler 2')) // Does not overlap with Handler 1
+```
+
+### Async
+
+All functions are designed to handle asynchronous calls with built in support for promises and generators.

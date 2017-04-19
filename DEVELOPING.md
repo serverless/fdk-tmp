@@ -30,7 +30,7 @@ cd path/to/your/project
 npm install ../path/to/fdk
 ```
 3) The `fdk` will auto build before installing.
-
+4) Run your code!
 
 ## Linting
 ```bash
