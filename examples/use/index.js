@@ -1,4 +1,4 @@
-import { use } from '../../'
+const { use } = require('../../')
 
 const fn = use(
   (next) => {

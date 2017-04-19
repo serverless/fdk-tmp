@@ -1,4 +1,4 @@
-import { ufs } from '../../'
+const { ufs } = require('../../')
 
 const fn = ufs((context, event) => {
   console.log('context:', context)

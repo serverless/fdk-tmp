@@ -22,7 +22,7 @@
   "dependencies": {
     "babel-polyfill": "^6.16.0",
     "bluebird": "^3.4.6",
-    "mudash": "^0.9.0"
+    "mudash": "^0.10.0"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",

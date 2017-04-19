@@ -1699,9 +1699,9 @@ ms@0.7.2:
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.2.tgz#ae25cf2512b3885a1d95d7f037868d8431124765"
 
-mudash@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/mudash/-/mudash-0.9.0.tgz#a7f5c9d98f6a39b792e1838297e9f44b619c819b"
+mudash@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/mudash/-/mudash-0.10.0.tgz#dfbde3cc70691699ee75033f219bec3cb5ac9160"
   dependencies:
     es6-symbol "^3.1.0"
     immutable "^3.8.1"

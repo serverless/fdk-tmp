@@ -1,16 +1,24 @@
-import _, { deftype, push, set, update, types } from 'mudash'
+import { deftype, flow, isFunction, map, push, set, update, types } from 'mudash'
 import ufs from '../ufs'
+import use from '../use'
 
 const FDK = deftype('FDK', {
 
-  handler: types.Function,
+  handle: types.Function,
   middleware: types.List,
   options: types.Object,
 
   handler(fn, obj) {
-    const app = set(obj, 'handler', fn)
-    console.log('handler - app:', app)
-    return ufs(() => {})
+    const app = set(obj, 'handle', fn)
+    return ufs(async (context, event) => {
+      const wrapped = map(app.middleware, (fn) => (ctx) => {
+        const result = fn(ctx)
+        return isFunction(result) ? ctx.use(result) : result
+      })
+      context = await flow(wrapped)(context)
+      event = await use(...context.middleware)(event)
+      return await app.handle(event)
+    })
   },
 
   azure(fn, obj) {

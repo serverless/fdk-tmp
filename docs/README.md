@@ -20,9 +20,15 @@
 
 The serverless fdk provides a simple and extensible framework for building serverless applications.
 
+**ES6**
 ```js
 import fdk from '@serverless/fdk'
 const app = fdk()
+```
+**ES5**
+```js
+var fdk = require('@serverless/fdk')
+var app = fdk()
 ```
 
 
