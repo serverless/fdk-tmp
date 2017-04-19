@@ -21,7 +21,7 @@
 The serverless fdk provides a simple and extensible framework for building serverless applications.
 
 ```js
-import fdk from 'fdk'
+import fdk from '@serverless/fdk'
 const app = fdk()
 ```
 
@@ -66,7 +66,7 @@ functions:
 
 ```js
 // index.js
-import fdk from 'fdk'
+import fdk from '@serverless/fdk'
 
 const myHandler = fdk()
   .handler(() => "Hello World")
@@ -80,7 +80,7 @@ Used to convert existing lambda functions without having to rewrite them. This a
 
 ```js
 // index.js
-import fdk from 'fdk'
+import fdk from '@serverless/fdk'
 
 const existingCode = (context, event, callback) => callback(null, "Hello World")
 
@@ -115,7 +115,7 @@ Middleware functions can be:
 - a generator function
 
 ```js
-import fdk from 'fdk'
+import fdk from '@serverless/fdk'
 
 const app = fdk()
   .use(context => {
@@ -130,7 +130,7 @@ const app = fdk()
 ```
 
 ```js
-import fdk from 'fdk'
+import fdk from '@serverless/fdk'
 
 const logger = context => next => async event => {
   console.info('handling', event)
@@ -149,7 +149,7 @@ export myHandler
 ### Immutable by Default
 
 ```js
-import fdk from 'fdk'
+import fdk from '@serverless/fdk'
 
 const app = fdk()
   .use(context => next => {
@@ -164,7 +164,7 @@ export const handler2 = app.handler(() => console.log('Handler 2'))
 
 #### Standard Function
 ```js
-import fdk from 'fdk'
+import fdk from '@serverless/fdk'
 
 const app = fdk()
   .use(context => next => event => {
@@ -174,7 +174,7 @@ const app = fdk()
 
 #### Async Function
 ```js
-import fdk from 'fdk'
+import fdk from '@serverless/fdk'
 
 const app = fdk()
   .use(context => next => async event => {
@@ -184,7 +184,7 @@ const app = fdk()
 
 #### Generator Function
 ```js
-import fdk, { take } from 'fdk'
+import fdk, { take } from '@serverless/fdk'
 
 const app = fdk()
   .use(context => next => function* (event) {
@@ -224,7 +224,7 @@ export function orderGadget(gadget, user) {
 
 ```js
 // any-file.js
-import { service } from 'fdk'
+import { service } from '@serverless/fdk'
 
 // Dynamic import of service
 const shop = await service('shop')
@@ -260,7 +260,7 @@ export function orderGadget(gadget, user) {
 
 ```js
 // index1.js
-import { service } from 'fdk'
+import { service } from '@serverless/fdk'
 
 const shop = service('shop')
 

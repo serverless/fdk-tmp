@@ -1,3 +1,6 @@
+if (!global._babelPolyfill) {
+  require('babel-polyfill')
+}
 var _ = require('mudash')
 var modules = require('./dist')
 var fdk = function() {

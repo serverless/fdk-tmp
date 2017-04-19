@@ -1,5 +1,5 @@
 {
-  "name": "fdk",
+  "name": "@serverless/fdk",
   "version": "0.0.1",
   "main": "./index.js",
   "description": "Functional middleware for a serverless world",
@@ -20,13 +20,13 @@
     "watch": "mkdir -p dist && babel -w src -d dist --source-maps"
   },
   "dependencies": {
+    "babel-polyfill": "^6.16.0",
     "bluebird": "^3.4.6",
-    "mudash": "^0.8.0"
+    "mudash": "^0.9.0"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-eslint": "^6.1.2",
-    "babel-polyfill": "^6.16.0",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-stage-1": "^6.16.0",
     "babel-preset-stage-2": "^6.18.0",

@@ -1,5 +1,5 @@
 ```js
-import { use } from 'fdk'
+import { use } from '@serverless/fdk'
 
 const middleware = use(
   (next) => (data) => {
