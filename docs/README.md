@@ -14,23 +14,20 @@
 * [Function Reference](#serverless-function-reference)
 * [Event Format](#serverless-event-format)
 * [Concepts](#concepts)
-  + [Immutability](#immutability)
+  + [Consistent](#consistent)
+  + [Immutable](#immutable)
   + [Async](#async)
+  + [Functional](#functional)
+  + [Extendable](#extendable)
 
 
 ## Application
 
 The serverless fdk provides a simple and extensible framework for building serverless applications.
 
-**ES6**
 ```js
-import fdk from '@serverless/fdk'
+const fdk = require('@serverless/fdk')
 const app = fdk()
-```
-**ES5**
-```js
-var fdk = require('@serverless/fdk')
-var app = fdk()
 ```
 
 
@@ -74,13 +71,34 @@ functions:
 
 ```js
 // index.js
-import fdk from '@serverless/fdk'
+const fdk = require('@serverless/fdk')
 
 const myHandler = fdk()
   .handler(() => "Hello World")
 
-export myHandler
+module.exports.myHandler = myHandler
 ```
+
+#### `FDK.handler(fn)`
+
+```js
+handler(
+  fn: (
+    event: Event,
+    context: Context
+  ) => any | Promise | Generator
+): (...args:any) => Promise
+```
+
+**Example**
+```js
+fdk()
+  .handler((event, context) => {
+    return Promise.resolve('some value')
+  })
+```
+
+
 
 #### Lambda Handler
 
@@ -88,14 +106,14 @@ Used to convert existing lambda functions without having to rewrite them. This a
 
 ```js
 // index.js
-import fdk from '@serverless/fdk'
+const fdk = require('@serverless/fdk')
 
 const existingCode = (context, event, callback) => callback(null, "Hello World")
 
 const myHandler = fdk()
   .lambda(existingCode)
 
-export myHandler
+module.exports.myHandler = myHandler
 ```
 
 #### Azure Handler
@@ -123,27 +141,26 @@ Middleware functions can be:
 - a generator function
 
 ```js
-import fdk from '@serverless/fdk'
+const fdk = require('@serverless/fdk')
 
 const app = fdk()
   .use(context => {
-
+    return context
   })
   .use(context => next => {
-
+    return (event) => next(event)
   })
   .use(context => next => event => {
-
+    return event
   })
 ```
 
 ```js
-import fdk from '@serverless/fdk'
+const fdk = require('@serverless/fdk')
 
 const logger = context => next => async event => {
   console.info('handling', event)
   let result = await next(event)
-  console.log('next state', context.getState())
   return result
 }
 
@@ -151,14 +168,14 @@ const myHandler = fdk()
   .use(logger)
   .handler((event) => "My response")
 
-export myHandler  
+module.exports.myHandler = myHandler
 ```
 
 ### Types of functions
 
 #### Standard Function
 ```js
-import fdk from '@serverless/fdk'
+const fdk = require('@serverless/fdk')
 
 const app = fdk()
   .use(context => next => event => {
@@ -167,8 +184,20 @@ const app = fdk()
 ```
 
 #### Async Function
+
+**ES6**
 ```js
-import fdk from '@serverless/fdk'
+const fdk = require('@serverless/fdk')
+
+const app = fdk()
+  .use(context => next => async event => {
+    return await next(event)
+  })
+```
+
+**ES5**
+```js
+var fdk = require('@serverless/fdk')
 
 const app = fdk()
   .use(context => next => async event => {
@@ -178,11 +207,10 @@ const app = fdk()
 
 #### Generator Function
 ```js
-import fdk, { take } from '@serverless/fdk'
+const fdk = require('@serverless/fdk')
 
 const app = fdk()
   .use(context => next => function* (event) {
-    const pingEvent = yield take('ping')
     return yield next(event)
   })
 ```
@@ -192,7 +220,7 @@ const app = fdk()
 The Context contains data about the runtime, provider, and other useful information.
 
 ```js
-import fdk from '@serverless/fdk'
+const fdk = require('@serverless/fdk')
 
 const app = fdk()
   .use(context => {
@@ -209,8 +237,8 @@ Name | Type | Description
 `provider` | <code>{Object}</code> | The details about the provider.
 
 
-
 ### Event
+//TODO
 ```js
 ```
 
@@ -245,12 +273,13 @@ export function orderGadget(gadget, user) {
 
 ```js
 // any-file.js
-import { service } from '@serverless/fdk'
+const fdk = require('@serverless/fdk')
 
 // Dynamic import of service
-const shop = await service('shop')
-
-shop.orderGadget({ type: "flibgibit" }, { name: 'brian' }) // Returns a Promise that resolves to 123
+fdk.service('shop')
+  .then((shop) => {
+    shop.orderGadget({ type: "flibgibit" }, { name: 'brian' }) // Returns a Promise that resolves to 123
+  })
 ```
 
 
@@ -281,7 +310,7 @@ export function orderGadget(gadget, user) {
 
 ```js
 // index1.js
-import { service } from '@serverless/fdk'
+const fdk = require('@serverless/fdk')
 
 const shop = service('shop')
 
@@ -308,22 +337,22 @@ orderGadget({ type: "flibgibit" }, { name: 'brian' }) // Returns a Promise that 
 
 ## Concepts
 
-### Immutability
+### Immutable
 
 All data models are immutable by default built on top of [immutable](https://facebook.github.io/immutable-js/)
 
 ```js
-import fdk from '@serverless/fdk'
+const fdk = require('@serverless/fdk')
 
 const app = fdk()
   .use(context => next => event => {
     // some shared middleware
   })
 
-export const handler1 = app.handler(() => console.log('Handler 1'))
-export const handler2 = app.handler(() => console.log('Handler 2')) // Does not overlap with Handler 1
+const handler1 = app.handler(() => console.log('Handler 1'))
+const handler2 = app.handler(() => console.log('Handler 2')) // Does not overlap with Handler 1
 ```
 
 ### Async
 
-All functions are designed to handle asynchronous calls with built in support for promises and generators.
+All functions are designed to handle asynchronous calls with built in support for Promises and Generators.

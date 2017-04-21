@@ -14,7 +14,7 @@ The Serverless FDK is designed to ease the adoption of serverless technology. It
   - Example written for using it with Terraform
 - *Offers convenience and standardization:*
   - Built on immutability
-  - Data transformations
+  - Convenient data transformations
   - Uniform experience across FaaS providers
     - Consistent error handling
     - Consistent logging
@@ -62,6 +62,9 @@ functions:
 
 [Full API documentation](./docs) - Learn about available methods and concepts.
 
+## Examples
+
+[Plenty of examples](./examples) - Examples for various cloud providers and uses of functionality.
 
 ## Install
 
