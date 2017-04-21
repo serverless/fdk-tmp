@@ -4,11 +4,11 @@ import { FDK } from './types'
 export default function fdk(config = {}) {
   let { middleware, handler, options } = config
   middleware = middleware || im([])
-  handler = handler || null
   options = options || {}
-  return FDK({
+
+  const app = FDK({
     middleware,
-    handler,
     options
   })
+  return handler ? app.handler(handler) : app
 }
