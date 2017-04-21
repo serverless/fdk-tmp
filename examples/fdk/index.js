@@ -14,8 +14,8 @@ const app = fdk()
     }
   })
 
-const handler = app.handler((event) => {
-  console.log('handler - event:', event)
+const handler = app.handler((event, context) => {
+  console.log('handler - event:', event, ' context:', context)
   return 'Hello world'
 })
 

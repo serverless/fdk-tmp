@@ -8,13 +8,9 @@ const FDK = deftype('FDK', {
   options: types.Object,
 
   handler(fn, obj) {
-    const chain = map(app.middleware, (middleware) => (ctx) => {
-      const result = middleware(ctx)
-      return isFunction(result) ? ctx.use(result) : result
-    })
     return ufs(async (context, event) => {
-      context = await flow(chain)(context)
-      const handler = await use(...context.middleware)(fn)
+      context = await flow(obj.middleware)(context)
+      const handler = await use(...context.middleware)((evt) => fn(evt, context))
       return await handler(event, context)
     })
   },
@@ -45,7 +41,10 @@ const FDK = deftype('FDK', {
   // },
 
   use(fn, obj) {
-    return update(obj, 'middleware', (middleware) => push(middleware, fn))
+    return update(obj, 'middleware', (middleware) => push(middleware, (ctx) => {
+      const result = fn(ctx)
+      return isFunction(result) ? ctx.use(result) : result
+    }))
   }
 })
 
