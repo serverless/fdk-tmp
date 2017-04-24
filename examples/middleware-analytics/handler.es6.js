@@ -26,7 +26,7 @@ const loginRecorder = (context) => (next) => async (event) => {
 }
 
 const hello = fdk()
-  .use(eventRecorder)
+  .use(loginRecorder)
   .handler((event) => 'Hello world!')
 
 export hello

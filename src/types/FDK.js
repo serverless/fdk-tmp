@@ -19,6 +19,10 @@ const FDK = deftype('FDK', {
   //
   // },
 
+  // google(fn, obj) {
+  //
+  // },
+
   lambda(fn, obj) {
     return obj.handler(async (event, context) => {
       return new Promise((resolve, reject) => {

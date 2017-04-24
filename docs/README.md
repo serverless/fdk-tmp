@@ -81,6 +81,7 @@ module.exports.myHandler = myHandler
 
 #### `FDK.handler(fn)`
 
+**Signature**
 ```js
 handler(
   fn: (
@@ -237,6 +238,68 @@ Name | Type | Description
 `provider` | <code>{Object}</code> | The details about the provider.
 
 
+#### `Context.get(key)`
+
+Used to get a property from the context.
+
+**Signature**
+```js
+context.get(
+  key: string
+): any
+```
+
+**Example**
+```js
+const fdk = require('@serverless/fdk')
+
+const app = fdk()
+  .use(context => {
+    console.log(context.get('myCustomKey'))
+    return context
+  })
+```
+
+
+#### `Context.set(key, value)`
+
+Used to set a value on the Context. This call is *immutable* so it returns a new Context and does not modify the existing one.
+
+**Signature**
+```js
+context.set(
+  key: string,
+  value: any
+): Context
+```
+
+**Example**
+```js
+const fdk = require('@serverless/fdk')
+
+const app = fdk()
+  .use(context => {
+    const newContext = context.set('myCustomKey', 123)
+
+    console.log(context)    // Context {
+                            //  "middleware": List [],
+                            //  "native": [object Object],
+                            //  "options": [object Object],
+                            //  "provider": [object Object]
+                            // }
+    console.log(newContext) // Context {
+                            //  "middleware": List [],
+                            //  "native": [object Object],
+                            //  "options": [object Object],
+                            //  "provider": [object Object],
+                            //  "myCustomKey": 123
+                            // }
+
+    return newContext
+  })
+```
+
+
 ### Event
 //TODO
 ```js
@@ -337,9 +400,11 @@ orderGadget({ type: "flibgibit" }, { name: 'brian' }) // Returns a Promise that 
 
 ## Concepts
 
+### Consistent
+
 ### Immutable
 
-All data models are immutable by default built on top of [immutable](https://facebook.github.io/immutable-js/)
+All data models and methods are immutable by default built on top of [immutable](https://facebook.github.io/immutable-js/)
 
 ```js
 const fdk = require('@serverless/fdk')
@@ -356,3 +421,8 @@ const handler2 = app.handler(() => console.log('Handler 2')) // Does not overlap
 ### Async
 
 All functions are designed to handle asynchronous calls with built in support for Promises and Generators.
+
+
+### Functional
+
+### Extendable

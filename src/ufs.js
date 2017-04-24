@@ -28,23 +28,23 @@ const providerMap = {
     }
   },
   // 'azure': (fn, ctx) => (nativeContext, ...args) => {
-  //   // ctx = context({ ...ctx, native })
-  //   // return transformArgs(ctx, args)
-  //   //   .then((args) => call(ctx, fn, ...args))
-  //   //   .then((result) => ctx.done(null, result))
-  //   //   .catch((error) => ctx.done(error))
+  //   ctx = context({ ...ctx, native })
+  //   return transformArgs(ctx, args)
+  //     .then((args) => call(ctx, fn, ...args))
+  //     .then((result) => ctx.done(null, result))
+  //     .catch((error) => ctx.done(error))
   // },
   // 'google': (fn, ctx) => (evt, callback) => {
-  //   // ctx = context({ ...ctx, native })
-  //   // return transformArgs(ctx, [evt])
-  //   //   .then((args) => call(ctx, fn, ...args))
-  //   //   .then((result) => callback(null, result))
-  //   //   .catch((error) => callback(error))
+  //   ctx = context({ ...ctx, native })
+  //   return transformArgs(ctx, [evt])
+  //     .then((args) => call(ctx, fn, ...args))
+  //     .then((result) => callback(null, result))
+  //     .catch((error) => callback(error))
   // },
   // 'openwhisk': (fn, ctx) => (params) => {
-  //   // ctx = context({ ...ctx, native })
-  //   // return transformArgs(ctx, [params])
-  //   //   .then((args) => call(ctx, fn, ...args))
+  //   ctx = context({ ...ctx, native })
+  //   return transformArgs(ctx, [params])
+  //     .then((args) => call(ctx, fn, ...args))
   // },
   'default': (fn, ctx) => async (...args) => {
     ctx = context({ ...ctx, native: {} })

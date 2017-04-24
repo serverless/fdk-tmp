@@ -6,7 +6,7 @@ import fdk from '@serverless/fdk'
 
 const crashReporter = (context) => (next) => async (event) => {
   try {
-    return next(event)
+    return await next(event)
   } catch(error) {
     Raven.captureException(err, {
       extra: {
