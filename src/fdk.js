@@ -1,14 +1,13 @@
-import { im } from 'mudash'
-import { FDK } from './types'
+import FDK from './types/FDK'
+import ufs from './ufs'
 
-export default function fdk(config = {}) {
-  let { middleware, handler, options } = config
-  middleware = middleware || im([])
-  options = options || {}
-
-  const app = FDK({
-    middleware,
-    options
+export default function fdk(middleware) {
+  const fdk = new FDK({
+    middleware
   })
-  return handler ? app.handler(handler) : app
+  return (handler) => ufs(async (context, event) => {
+    context = await flow(obj.middleware)(context)
+    const handler = await use(...context.middleware)((evt) => fn(evt, context))
+    return await handler(event, context)
+  })
 }

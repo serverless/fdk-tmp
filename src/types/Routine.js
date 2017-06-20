@@ -1,23 +1,21 @@
-import { deftype, isFunction, isGenerator, types } from 'mudash'
-import Promise from 'bluebird'
-import Goable from '../protocols/Goable'
+import isFunction from '../util/isFunction'
+import isGenerator from '../util/isGenerator'
+import isGoable from '../util/isGoable'
 
-const Routine = deftype('Routine', {
-
-  goable: types.Object,
-
-  async go(args, obj) {
-    return await goGoable(obj.goable, args)
+export default class Routine {
+  constructor({ goable }) {
+    this.goable = goable
   }
-})
-
-export default Routine
+  async go(args) {
+    return await goGoable(this.goable, args)
+  }
+}
 
 async function goGoable(goable, args = []) {
   let result
   if (isFunction(goable)) {
     result = goable(...args)
-  } else if (Goable.is(goable)) {
+  } else if (isGoable(goable)) {
     result = goable.go(args)
   }
   return await goResolve(result)

@@ -1,9 +1,8 @@
-import { im } from 'mudash'
-import { Context } from './types'
+import Context from './types/Context'
 import provider from './provider'
 
-export default function context({ middleware = im([]), native, options }) {
-  return Context({
+export default function context({ middleware = [], native, options }) {
+  return new Context({
     middleware,
     native,
     options,

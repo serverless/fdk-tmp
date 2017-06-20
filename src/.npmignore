@@ -1,0 +1,25 @@
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+
+#development
+.babelrc
+.editorconfig
+.eslintrc.json
+.travis.yml
+__tests__
+docs
+examples
+scripts
+src
+test
+yarn.lock
+
+# IntelliJ resources
+.idea/
+*.iml
+*.ipr
+*.iws

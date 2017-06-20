@@ -1,8 +1,29 @@
 {
-  "name": "@serverless/fdk",
-  "version": "0.0.1",
-  "main": "./index.js",
-  "description": "Functional middleware for a serverless world",
+  "name": "@serverless/fdk-build",
+  "private": true,
+  "scripts": {
+    "build": "./scripts/build.sh",
+    "clean": "./scripts/clean.sh",
+    "lint": "./scripts/lint.sh",
+    "prepublish": "./scripts/prepublish.sh",
+    "postinstall": "./scripts/postinstall.sh",
+    "test": "./scripts/test.sh",
+    "watch": "./scripts/watch.sh"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "chai": "^3.5.0",
+    "del": "^2.2.2",
+    "eslint": "^3.10.1",
+    "eslint-cli": "^1.1.0",
+    "lodash": "^4.17.4",
+    "mocha": "^3.2.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/serverless/fdk.git"
@@ -12,31 +33,5 @@
     "url": "https://github.com/serverless/fdk/issues"
   },
   "homepage": "https://github.com/serverless/fdk#readme",
-  "scripts": {
-    "build": "mkdir -p dist && babel src -d dist --source-maps",
-    "lint": "eslint .",
-    "prepublish": "npm run build",
-    "test": "ava",
-    "watch": "mkdir -p dist && babel -w src -d dist --source-maps"
-  },
-  "dependencies": {
-    "babel-polyfill": "^6.16.0",
-    "bluebird": "^3.4.6",
-    "mudash": "^0.10.0"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-eslint": "^6.1.2",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-stage-1": "^6.16.0",
-    "babel-preset-stage-2": "^6.18.0",
-    "chai": "^3.5.0",
-    "eslint": "^3.9.1",
-    "eslint-cli": "^1.1.0"
-  },
-  "license": "MIT",
-  "keywords": [
-    "middleware",
-    "serverless"
-  ]
+  "license": "MIT"
 }

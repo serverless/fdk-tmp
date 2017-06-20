@@ -1,8 +1,7 @@
-import { deftype, types } from 'mudash'
-
-const Event = deftype('Event', {
-  data: types.Object,
-  native: types.Object
-})
-
-export default Event
+export default class Event {
+  constructor({ data, native, type }) {
+    this.data = data
+    this.native = native
+    this.type = type
+  }
+}

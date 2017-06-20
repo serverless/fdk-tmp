@@ -1,0 +1,23 @@
+{
+  "name": "@serverless/fdk",
+  "version": "0.0.1",
+  "main": "./index.js",
+  "description": "Functional middleware for a serverless world",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/serverless/fdk.git"
+  },
+  "author": "serverless.com",
+  "bugs": {
+    "url": "https://github.com/serverless/fdk/issues"
+  },
+  "homepage": "https://github.com/serverless/fdk#readme",
+  "dependencies": {
+    "babel-polyfill": "^6.16.0"
+  },
+  "license": "MIT",
+  "keywords": [
+    "middleware",
+    "serverless"
+  ]
+}

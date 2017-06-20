@@ -1,5 +1,3 @@
-import { slice, split } from 'mudash'
-
 export default function provider(nativeContext) {
   let name = 'default'
   //TODO BRN: figure out if we're in azure, openwhisk, google or default
@@ -21,11 +19,13 @@ export default function provider(nativeContext) {
 //arn:aws:<service>:<region>:<account_id>:<resource>
 function parseAWSARN(arn) {
   const [
+    dud1,
+    dud2,
     service,
     region,
     accountId,
     resource
-  ] = slice(split(arn, ':'), 2)
+  ] = arn
   return {
     service,
     region,

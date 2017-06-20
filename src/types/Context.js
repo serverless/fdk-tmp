@@ -1,15 +1,14 @@
-import { deftype, push, update, types } from 'mudash'
 
-const Context = deftype('Context', {
+export default class Context {
 
-  middleware: types.List,
-  native: types.Object,
-  options: types.Object,
-  provider: types.Object,
-
-  use(fn, obj) {
-    return update(obj, 'middleware', (middleware) => push(middleware, fn))
+  constructor({ middleware, native, options, provider }) {
+    this.middleware = middleware
+    this.native = native
+    this.options = options
+    this.provider = provider
   }
-})
 
-export default Context
+  use(fn) {
+    this.middleware.push(fn)
+  }
+}

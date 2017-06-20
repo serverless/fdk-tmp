@@ -1,9 +1,19 @@
 language: node_js
-cache: yarn
 node_js:
-- 'node'
+- '4.0'
+- '5.0'
+- '6.0'
+- '7.0'
+cache: yarn
+after_success:
+  - npm run build
+before_deploy:
+  - cd dist
 deploy:
   provider: npm
-  email: serverless.com
+  email: brian@serverless.com
+  skip_cleanup: true
   on:
+    branch: master
     tags: true
+    repo: serverless/fdk

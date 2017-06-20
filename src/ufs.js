@@ -1,4 +1,4 @@
-import { isString } from 'mudash'
+import isString from './util/isString'
 import context from './context'
 import event from './event'
 
@@ -16,6 +16,7 @@ const providerMap = {
     evt = event({ native: evt })
     try {
       let response = await call(fn, ctx, evt)
+      // check event type, based on event type, do X
       if (isString(response)) {
         response = {
           statusCode: 200,
